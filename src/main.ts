@@ -17,71 +17,71 @@ export default class LinkConverterPlugin extends Plugin {
         await this.loadSettings();
         this.addSettingTab(new LinkConverterSettingsTab(this.app, this));
 
-        this.addCommand({
-            id: 'convert-wikis-to-md-in-active-file',
-            name: 'Active File: Links to Markdown',
-            callback: () => {
-                Converter.convertLinksInActiveFile(this, 'markdown');
-            },
-        });
-
-        this.addCommand({
-            id: 'convert-md-to-wikis-in-active-file',
-            name: 'Active File: Links to Wiki',
-            callback: () => {
-                Converter.convertLinksInActiveFile(this, 'wiki');
-            },
-        });
+        // this.addCommand({
+        //     id: 'convert-wikis-to-md-in-active-file',
+        //     name: 'Active File: Links to Markdown',
+        //     callback: () => {
+        //         Converter.convertLinksInActiveFile(this, 'markdown');
+        //     },
+        // });
+        //
+        // this.addCommand({
+        //     id: 'convert-md-to-wikis-in-active-file',
+        //     name: 'Active File: Links to Wiki',
+        //     callback: () => {
+        //         Converter.convertLinksInActiveFile(this, 'wiki');
+        //     },
+        // });
 
         this.addCommand({
             id: 'convert-wikis-to-md-in-vault',
-            name: 'Vault: Links to Markdown',
+            name: 'Convert Image Wiki Links to Markdown Links',
             callback: () => {
-                let infoText = 'Are you sure you want to convert all Wikilinks to Markdown Links?';
+                let infoText = 'Are you sure you want to convert all Image Wiki Links to Markdown Links?';
                 let modal = new ConfirmationModal(this.app, infoText, () => Converter.convertLinksInVault(this, 'markdown'));
                 modal.open();
             },
         });
 
-        this.addCommand({
-            id: 'convert-mdlinks-to-wiki-in-vault',
-            name: 'Vault: Links to Wiki',
-            callback: () => {
-                let infoText = 'Are you sure you want to convert all Markdown Links to Wikilinks?';
-                let modal = new ConfirmationModal(this.app, infoText, () => Converter.convertLinksInVault(this, 'wiki'));
-                modal.open();
-            },
-        });
-
-        this.addCommand({
-            id: 'convert-wikis-to-mdlink-under-folder',
-            name: 'Certain Folder: Links to Markdown',
-            callback: () => {
-                let fileMoveSuggester = new FolderSuggestionModal(this, 'markdown');
-                fileMoveSuggester.open();
-            },
-        });
-
-        this.addCommand({
-            id: 'convert-mdlinks-to-wikis-under-folder',
-            name: 'Certain Folder: Links to Wiki',
-            callback: () => {
-                let fileMoveSuggester = new FolderSuggestionModal(this, 'wiki');
-                fileMoveSuggester.open();
-            },
-        });
-
-        this.addCommand({
-            id: 'convert-wikis-to-mdlinks-within-selection',
-            name: 'Editor Selection: Links to Markdown',
-            callback: async () => Converter.convertLinksWithinSelection('markdown', this),
-        });
-
-        this.addCommand({
-            id: 'convert-mdlinks-to-wiki-within-selection',
-            name: 'Editor Selection: Links to Wiki',
-            callback: async () => Converter.convertLinksWithinSelection('wiki', this),
-        });
+        // this.addCommand({
+        //     id: 'convert-mdlinks-to-wiki-in-vault',
+        //     name: 'Vault: Links to Wiki',
+        //     callback: () => {
+        //         let infoText = 'Are you sure you want to convert all Markdown Links to Wikilinks?';
+        //         let modal = new ConfirmationModal(this.app, infoText, () => Converter.convertLinksInVault(this, 'wiki'));
+        //         modal.open();
+        //     },
+        // });
+        //
+        // this.addCommand({
+        //     id: 'convert-wikis-to-mdlink-under-folder',
+        //     name: 'Certain Folder: Links to Markdown',
+        //     callback: () => {
+        //         let fileMoveSuggester = new FolderSuggestionModal(this, 'markdown');
+        //         fileMoveSuggester.open();
+        //     },
+        // });
+        //
+        // this.addCommand({
+        //     id: 'convert-mdlinks-to-wikis-under-folder',
+        //     name: 'Certain Folder: Links to Wiki',
+        //     callback: () => {
+        //         let fileMoveSuggester = new FolderSuggestionModal(this, 'wiki');
+        //         fileMoveSuggester.open();
+        //     },
+        // });
+        //
+        // this.addCommand({
+        //     id: 'convert-wikis-to-mdlinks-within-selection',
+        //     name: 'Editor Selection: Links to Markdown',
+        //     callback: async () => Converter.convertLinksWithinSelection('markdown', this),
+        // });
+        //
+        // this.addCommand({
+        //     id: 'convert-mdlinks-to-wiki-within-selection',
+        //     name: 'Editor Selection: Links to Wiki',
+        //     callback: async () => Converter.convertLinksWithinSelection('wiki', this),
+        // });
 
         if (this.settings.contextMenu) this.app.workspace.on('file-menu', this.addFileMenuItems);
     }

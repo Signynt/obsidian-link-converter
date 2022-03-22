@@ -20,8 +20,8 @@ const getAllLinkMatchesInFile = async (mdFile: TFile, plugin: LinkConverterPlugi
     let fileText = await plugin.app.vault.read(mdFile);
 
     // --> Get All WikiLinks
-    let wikiRegex = /\[\[.*?\]\]/g;
-    let wikiMatches = fileText.match(wikiRegex);
+    let imageRegex = /\[\[.*?(\.jpg|\.png|\.jpeg|\.PNG|\.JPG|\.JPEG|\.excalidraw)\]\]/g;
+    let wikiMatches = fileText.match(imageRegex);
 
     if (wikiMatches) {
         let fileRegex = /(?<=\[\[).*?(?=(\]|\|))/;
